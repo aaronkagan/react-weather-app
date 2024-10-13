@@ -45,14 +45,22 @@ export default function Navigation() {
     }
   };
   return (
-    <nav>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={value} onChange={handleChange} />
-        <button type="submit">Add City</button>
-      </form>
-      {isLoading && <div>Searching for the city</div>}
-      {error && <div>{error}</div>}
-      <ul>
+    <nav className="bg-[#1853cc] w-[300px] h-full py-5 overflow-y-scroll overscroll-y-contain">
+      <div className="flex justify-center mb-5">
+        <form className="w-[90%]" onSubmit={handleSubmit}>
+          <input
+            className="w-full p-1 outline-none text-slate-500"
+            type="text"
+            value={value}
+            onChange={handleChange}
+            placeholder="Add City"
+          />
+        </form>
+      </div>
+      {/* {isLoading && <div>Searching for the city</div>}
+      {error && <div>{error}</div>} */}
+
+      <ul className="flex flex-col gap-4">
         <HomeButton />
         {cities.map((city) => {
           return <NavButton key={city} city={city} />;
