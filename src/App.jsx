@@ -11,13 +11,15 @@ export default function App() {
       <div>
         <Switch>
           <Route exact path="/" component={SplashPage} />
-          <div className="flex justify-center items-center min-h-[100vh]">
-            <main className="mx-auto h-[80vh] flex">
-              <Navigation />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/city/:cityId" component={City} />
-            </main>
-          </div>
+          <>
+            <div className="flex justify-center items-center min-h-[100vh]">
+              <main className="mx-auto h-[80vh] flex">
+                <Navigation />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/city/:cityId" component={City} />
+              </main>
+            </div>
+          </>
         </Switch>
       </div>
     </Router>

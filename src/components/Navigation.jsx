@@ -52,16 +52,14 @@ export default function Navigation() {
         <form className="w-[90%]" onSubmit={handleSubmit}>
           <input
             className="w-full p-1 outline-none text-slate-500"
-            type="text"
+            type="search"
             value={value}
             onChange={handleChange}
-            placeholder="Add City"
+            placeholder={isLoading ? 'Searching for the city' : 'Add City'}
           />
         </form>
       </div>
-      {/* {isLoading && <div>Searching for the city</div>}
-      {error && <div>{error}</div>} */}
-
+      {/* {error && <div>{error}</div>}  */}
       <ul className="flex flex-col gap-4">
         <HomeButton />
         {cities.map((city) => {
