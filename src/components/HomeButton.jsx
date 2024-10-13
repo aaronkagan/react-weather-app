@@ -31,7 +31,7 @@ export default function HomeButton() {
     <li>
       {weatherData ? (
         <div>
-          <Link to={`/city/home`}>
+          <Link to={`/home`}>
             <div className="text-white bg-[#1f62f2] w-[90%] h-[100px] mx-auto p-2 flex justify-between rounded">
               <div className="flex flex-col justify-between gap-3">
                 <div>
