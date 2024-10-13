@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import NavButton from './NavButton';
 import HomeButton from './HomeButton';
 
@@ -21,7 +20,10 @@ export default function Navigation() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (value) {
+    if (
+      value &&
+      !cities.map((city) => city.toLowerCase()).includes(value.toLowerCase())
+    ) {
       try {
         setIsLoading(true);
 
