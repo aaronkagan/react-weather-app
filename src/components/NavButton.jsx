@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import kToC from '../utils/kToC';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
@@ -29,7 +30,7 @@ export default function NavButton({ city }) {
   return (
     <li>
       <Link to={`/city/${city}`}>{city}</Link>
-      {weatherData && weatherData.main.temp}
+      {weatherData && <p>{kToC(weatherData.main.temp)}&deg;</p>}
     </li>
   );
 }
