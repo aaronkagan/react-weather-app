@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 export default function Navigation() {
-  const [cities, setCities] = useState();
+  const [cities, setCities] = useState([]);
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(async (position) => {});
-    }
-  }, []);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -24,13 +22,18 @@ export default function Navigation() {
     if (value) {
       try {
         setIsLoading(true);
-        // If this user doesn't exist, the error will be catch will be triggered and the code below that adds the user to the nav bar will be skipped
-        await axios(`https://api.github.com/users/${value}`);
-        const updatedUsers = [...users, value];
-        setUsers(updatedUsers);
+
+        const { data } = await axios(
+          `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${openWeatherApiKey}`
+        );
+        if (data.length === 0) throw error;
+        const updatedCities = [...cities, value];
+        setCities(updatedCities);
         setValue('');
+        history.push(`/city/${value}`);
       } catch (error) {
-        setError(`${error.message}  : User doesn't exist`);
+        console.error(error.message);
+        setError("City doesn't exist");
         setTimeout(() => {
           setError('');
         }, 5000);
@@ -43,20 +46,26 @@ export default function Navigation() {
     <nav>
       <form onSubmit={handleSubmit}>
         <input type="text" value={value} onChange={handleChange} />
-        <button type="submit">Add User</button>
+        <button type="submit">Add City</button>
       </form>
-      {isLoading && <div>Searching for the user</div>}
+      {isLoading && <div>Searching for the city</div>}
       {error && <div>{error}</div>}
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
-        {users.map((userId) => (
-          <li key={userId}>
-            <Link to={`/user/${userId}`}>{userId}</Link>
-          </li>
-        ))}
+        {cities.map((city) => {
+          return <NavButton key={city} city={city} />;
+        })}
       </ul>
     </nav>
+  );
+}
+
+function NavButton({ city }) {
+  return (
+    <li>
+      <Link to={`/city/${city}`}>{city}</Link>
+    </li>
   );
 }
