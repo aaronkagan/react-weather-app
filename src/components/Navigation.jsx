@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import NavButton from './NavButton';
+import HomeButton from './HomeButton';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
@@ -51,21 +53,11 @@ export default function Navigation() {
       {isLoading && <div>Searching for the city</div>}
       {error && <div>{error}</div>}
       <ul>
-        <li>
-          <Link to="/home">Home</Link>
-        </li>
+        <HomeButton />
         {cities.map((city) => {
           return <NavButton key={city} city={city} />;
         })}
       </ul>
     </nav>
-  );
-}
-
-function NavButton({ city }) {
-  return (
-    <li>
-      <Link to={`/city/${city}`}>{city}</Link>
-    </li>
   );
 }
