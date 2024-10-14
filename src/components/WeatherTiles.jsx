@@ -11,8 +11,7 @@ const client = createClient(pexelsApiKey);
 export default function WeatherTiles({ weatherData, city }) {
   const [bgImage, setBgImage] = useState();
 
-  const query = 'Clear Sky';
-  // const query = weatherData.weather[0].main + ' sky';
+  const query = weatherData.weather[0].main + ' sky';
 
   async function getBgImage() {
     const photos = await client.photos.search({ query, per_page: 1 });
@@ -104,8 +103,10 @@ export default function WeatherTiles({ weatherData, city }) {
         </div> */}
       </div>
 
-      <div className="col-right w-[33%] flex flex-col justify-between">
-        <div className=""></div>
+      <div className="col-right gap-5 pt-5 w-[33%] flex flex-col justify-between">
+        <div className="w-full">
+          <img src={bgImage} alt="" className="object-cover w-full" />
+        </div>
 
         <div className="h-[70%]">
           <ForecastTile
