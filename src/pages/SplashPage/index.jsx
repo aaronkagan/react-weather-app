@@ -6,11 +6,11 @@ export default function SplashPage() {
       <Link to="/home">
         <img
           className="rounded-[110px]"
-          src="/assets/images/weather-app-icon.webp"
+          src="/assets/images/icons/weather-app-icon.webp"
           alt="weather app icon"
         />
       </Link>
-      <p className="mt-5 splash-text">
+      <p className="mt-5 text-white splash-text">
         Click On Icon Above To Load Weather App
       </p>
     </div>
