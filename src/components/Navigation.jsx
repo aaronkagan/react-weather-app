@@ -48,8 +48,8 @@ export default function Navigation() {
     }
   };
   return (
-    <nav className="bg-transparent rounded w-[300px] h-full py-5 overflow-y-scroll">
-      <div className="flex justify-center mb-5">
+    <nav className="rounded-2xl w-[300px]  h-full py-5 no-scrollbar overflow-y-scroll  ">
+      <div className="flex justify-center mb-5 ">
         <form className="w-[90%]" onSubmit={handleSubmit}>
           <input
             className="w-full p-2 px-3 text-sm rounded outline-none  bg-[#202b3b] text-white"
@@ -61,7 +61,7 @@ export default function Navigation() {
         </form>
       </div>
       {/* {error && <div>{error}</div>}  */}
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 ">
         <HomeButton />
         {cities.map((city) => {
           return <NavButton key={city} city={city} />;

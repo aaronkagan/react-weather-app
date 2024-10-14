@@ -28,9 +28,11 @@ export default function ForecastTile({
   }, [lat, lon]);
 
   return (
-    <div className="flex flex-col items-center w-full p-5 text-center text-white border">
-      <p>5 Day Forecast for {city && capitalize(city)}</p>
-      <ul className="flex gap-4">
+    <div className="flex flex-col gap-4 items-center w-full h-full p-5 text-center text-white bg-[#202b3b] rounded-2xl">
+      <p className="text-text-color">
+        5 Day Forecast for {city && capitalize(city)}
+      </p>
+      <ul className="flex flex-col justify-around w-full h-full">
         {forecastData &&
           forecastData.map((day) => {
             const date = new Date(day.dt_txt.slice(0, 10));
@@ -39,10 +41,10 @@ export default function ForecastTile({
             };
             const dayOfWeek = date.toLocaleDateString('en-US', options);
             return (
-              <li key={day.dt}>
-                <p>{dayOfWeek}</p>
-                <p>{parseInt(day.main.temp)}&deg;</p>
+              <li key={day.dt} className="flex items-center justify-between">
+                <p className="text-xs font-thin">{dayOfWeek}</p>
                 <p>{capitalize(day.weather[0].description)}</p>
+                <p>{parseInt(day.main.temp)}&deg;</p>
               </li>
             );
           })}

@@ -32,7 +32,7 @@ export default function City({
       {weatherData ? (
         <WeatherTiles weatherData={weatherData} city={cityId} />
       ) : (
-        <p className="flex bg-gradient-to-t from-[#32cef4] to-[#1f62f2]  items-center justify-center w-full h-full text-2xl text-white ">
+        <p className="flex bg-[#0b131e] items-center justify-center w-full h-full text-2xl text-white ">
           Loading Weather Data...
         </p>
       )}

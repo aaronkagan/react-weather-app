@@ -4,11 +4,13 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'background-gradient':
-          'linear-gradient(135deg, rgba(36,36,62,1) 0%,rgba(47,43,97,1) 50%,rgba(17,13,43,1) 100%)',
+        'background-color': '#0b131e',
 
-        'card-gradient':
-          'linear-gradient(135deg, rgba(84,82,113,1) 0%, rgba(89,85,130,1) 50%, rgba(73,71,104,1) 100%)',
+        'card-color': '#202b3b',
+      },
+
+      textColor: {
+        'text-color': '#9399a2ff',
       },
     },
   },

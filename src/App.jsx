@@ -12,7 +12,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={SplashPage} />
           <>
-            <div className="flex justify-center bg-background-gradient items-center min-h-[100vh]">
+            <div className="flex justify-center bg-[#0b131e] items-center w-fit px-2 pt-2 pb-10">
               <main className="mx-auto h-[80vh] flex">
                 <Navigation />
                 <Route exact path="/home" component={Home} />
