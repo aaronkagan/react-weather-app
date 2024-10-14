@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavButton from './NavButton';
 import HomeButton from './HomeButton';
+import capitalize from '../utils/capitalize';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
@@ -31,7 +32,7 @@ export default function Navigation() {
           `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${openWeatherApiKey}`
         );
         if (data.length === 0) throw error;
-        const updatedCities = [...cities, value];
+        const updatedCities = [...cities, capitalize(value)];
         setCities(updatedCities);
         setValue('');
         history.push(`/city/${value}`);
@@ -47,7 +48,7 @@ export default function Navigation() {
     }
   };
   return (
-    <nav className="bg-[#1853cc] w-[300px] h-full py-5 overflow-y-scroll overscroll-y-contain">
+    <nav className="bg-[#0b131e] rounded-s-[20px] w-[300px] h-full py-5 overflow-y-scroll overscroll-y-contain">
       <div className="flex justify-center mb-5">
         <form className="w-[90%]" onSubmit={handleSubmit}>
           <input

@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import capitalize from '../utils/capitalize';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
@@ -30,8 +31,17 @@ export default function HomeButton() {
     <li>
       {weatherData ? (
         <div>
-          <Link to={`/home`}>
-            <div className="text-white bg-[#1f62f2] w-[90%] h-[100px] mx-auto p-2 flex justify-between rounded">
+          <NavLink
+            className={(isActive) =>
+              !isActive ? 'bg-[#202b3b]' : 'bg-[#1f62f2]'
+            }
+            to={`/home`}
+          >
+            <div
+              className={
+                'text-white w-[90%] bg-inherit h-[100px] mx-auto p-2 flex justify-between rounded '
+              }
+            >
               <div className="flex flex-col justify-between gap-3">
                 <div>
                   <p className="font-bold">
@@ -46,7 +56,7 @@ export default function HomeButton() {
                   {/* <p className="text-xs text-slate-300">5:39PM</p> */}
                 </div>
                 <p className="text-xs text-slate-300">
-                  {weatherData.weather[0].main}
+                  {capitalize(weatherData.weather[0].description)}
                 </p>
               </div>
               <div className="flex flex-col items-end justify-between">
@@ -59,7 +69,7 @@ export default function HomeButton() {
                 </p>
               </div>
             </div>
-          </Link>
+          </NavLink>
         </div>
       ) : (
         <div className="text-white bg-[#1f62f2] w-[90%] h-[100px] mx-auto p-2 rounded flex items-center justify-center">

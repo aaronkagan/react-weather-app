@@ -1,9 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import capitalize from '../utils/capitalize';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
-export default function ForecastTile({ coords: { lat, lon }, city }) {
+export default function ForecastTile({
+  coords: { lat, lon },
+  city,
+  getFiveDayTrend,
+}) {
   const [forecastData, setForecastData] = useState();
 
   async function getForecastData() {
@@ -24,7 +29,7 @@ export default function ForecastTile({ coords: { lat, lon }, city }) {
 
   return (
     <div className="flex flex-col items-center w-full p-5 text-center text-white border">
-      <p>5 Day Forecast for {city}</p>
+      <p>5 Day Forecast for {city && capitalize(city)}</p>
       <ul className="flex gap-4">
         {forecastData &&
           forecastData.map((day) => {
@@ -37,7 +42,7 @@ export default function ForecastTile({ coords: { lat, lon }, city }) {
               <li key={day.dt}>
                 <p>{dayOfWeek}</p>
                 <p>{parseInt(day.main.temp)}&deg;</p>
-                <p>{day.weather[0].description}</p>
+                <p>{capitalize(day.weather[0].description)}</p>
               </li>
             );
           })}
