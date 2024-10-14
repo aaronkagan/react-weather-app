@@ -6,7 +6,6 @@ const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
 export default function Home() {
   const [weatherData, setWeatherData] = useState();
-  const [coords, setCoords] = useState({});
 
   async function getWeatherData(lat, lon) {
     const { data } = await axios(
@@ -20,7 +19,6 @@ export default function Home() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude: lat, longitude: lon } = position.coords;
-          setCoords({ lat, lon });
           getWeatherData(lat, lon);
         },
         (error) => console.log(error)
