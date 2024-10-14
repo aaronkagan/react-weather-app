@@ -47,6 +47,7 @@ export default function Navigation() {
       }
     }
   };
+
   return (
     <nav className="rounded-2xl w-[300px]  h-full py-5 no-scrollbar overflow-y-scroll  ">
       <div className="flex justify-center mb-5 ">

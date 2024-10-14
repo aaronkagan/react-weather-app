@@ -65,42 +65,22 @@ export default function WeatherTiles({ weatherData, city }) {
           >
             {<span>{weatherData.sys.country.toUpperCase()}</span>}
           </WeatherTile>
-          <WeatherTile text="Max Temp" icon="/assets/images/icons/temp.png">
-            {<span>{parseInt(weatherData.main.temp_max)}&deg;</span>}
+          <WeatherTile
+            text="Visibility"
+            icon="/assets/images/icons/visibility.png"
+          >
+            {<span>{parseInt(weatherData.visibility * 0.3048)}m</span>}
           </WeatherTile>
-          <WeatherTile text="Max Temp" icon="/assets/images/icons/temp.png">
-            {<span>{parseInt(weatherData.main.temp_max)}&deg;</span>}
+          <WeatherTile text="Wind" icon="/assets/images/icons/wind.png">
+            {<span>{weatherData.wind.speed} km/h</span>}
           </WeatherTile>
-          <WeatherTile text="Max Temp" icon="/assets/images/icons/temp.png">
-            {<span>{parseInt(weatherData.main.temp_max)}&deg;</span>}
+          <WeatherTile text="Clouds" icon="/assets/images/icons/clouds.png">
+            {<span>{weatherData.clouds.all}%</span>}
           </WeatherTile>
-          <WeatherTile text="Max Temp" icon="/assets/images/icons/temp.png">
-            {<span>{parseInt(weatherData.main.temp_max)}&deg;</span>}
+          <WeatherTile text="Humidity" icon="/assets/images/icons/humidity.png">
+            {<span>{weatherData.main.humidity}%</span>}
           </WeatherTile>
         </div>
-
-        {/* 
-        <div className="w-40 h-12 flex items-center justify-center gap-5  p-5 bg-card-gradient text-center text-[#7f8690] rounded">
-          <p>Country</p>
-          <p>{weatherData.sys.country.toUpperCase()}</p>
-        </div>
-        <div className="p-5 text-center text-[#7f8690] border">
-          <p className="flex items-center justify-center">Visibility</p>
-          <p>{weatherData.visibility}m</p>
-        </div>
-        <div className="p-5 text-center text-[#7f8690] border">
-          {' '}
-          <p>Wind</p>
-          <p>{weatherData.wind.speed} km/h</p>
-        </div>
-        <div className="p-5 text-center text-[#7f8690] border">
-          <p>Clouds</p>
-          <p>{weatherData.clouds.all}%</p>
-        </div>
-        <div className="p-5 text-center text-[#7f8690] border">
-          <p>Humidity</p>
-          <p>{weatherData.main.humidity}%</p>
-        </div> */}
       </div>
 
       <div className="col-right gap-5 pt-5 w-[33%] flex flex-col justify-between">
@@ -125,13 +105,14 @@ export default function WeatherTiles({ weatherData, city }) {
 
 function WeatherTile({ icon, text, children }) {
   return (
-    <div className="w-full flex items-center flex-start px-5 gap-5 bg-[#202b3b] text-center rounded-xl  ">
-      <div className="flex flex-col justify-between">
+    <div className="w-full flex items-center justify-start px-5 gap-10 bg-[#202b3b] text-center rounded-xl  ">
+      <div className="flex justify-center w-12">
         <img src={icon} className="h-10" />
       </div>
+
       <div className="flex flex-col items-start">
         <p className="text-text-color">{text}</p>
-        <p className="text-2xl text-white">{children}</p>
+        <p className="text-2xl font-bold text-white">{children}</p>
       </div>
     </div>
   );
