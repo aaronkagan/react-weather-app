@@ -10,7 +10,7 @@ export default function NavButton({ city }) {
 
   async function getWeatherData() {
     const { data: coords } = await axios(
-      `https://api.openweathermap.org/data/2.5/forecast?units="metric"&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${openWeatherApiKey}`
     );
 
     const { lat, lon } = coords[0];

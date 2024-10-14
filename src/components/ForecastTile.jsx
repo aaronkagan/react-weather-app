@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
-export default function ForecastTile({ coords: { lat, lon } }) {
+export default function ForecastTile({ coords: { lat, lon }, city }) {
   const [forecastData, setForecastData] = useState();
 
   async function getForecastData() {
@@ -20,12 +20,12 @@ export default function ForecastTile({ coords: { lat, lon } }) {
 
   useEffect(() => {
     getForecastData();
-  }, []);
+  }, [lat, lon]);
 
   return (
     <div className="p-5 text-center text-white border">
       {console.log(forecastData)}
-      <p>5 Day Forecast</p>
+      <p>5 Day Forecast for {city}</p>
       <ul className="flex gap-4">
         {forecastData &&
           forecastData.map((day) => {

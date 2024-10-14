@@ -30,9 +30,7 @@ export default function Home() {
 
   return (
     <div className=" flex bg-gradient-to-t from-[#32cef4] to-[#1f62f2] w-[1000px] h-full gap-4">
-      {weatherData && (
-        <WeatherTiles weatherData={weatherData} coords={coords} />
-      )}
+      {weatherData && <WeatherTiles weatherData={weatherData} />}
     </div>
   );
 }

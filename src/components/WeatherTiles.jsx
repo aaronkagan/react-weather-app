@@ -1,8 +1,9 @@
 import ForecastTile from './ForecastTile';
 
-export default function WeatherTiles({ weatherData, coords }) {
+export default function WeatherTiles({ weatherData, city }) {
   return (
     <div className=" flex flex-wrap bg-gradient-to-t from-[#32cef4] to-[#1f62f2] w-[1000px] h-full">
+      {console.log(weatherData)}
       <div className="p-5 text-center text-white border">
         <p>{weatherData.weather[0].main}</p>
         <p>{parseInt(weatherData.main.temp)}&deg;</p>
@@ -28,7 +29,10 @@ export default function WeatherTiles({ weatherData, coords }) {
         <p>{weatherData.sys.country.toUpperCase()}</p>
         <p>{weatherData.weather[0].description}</p>
       </div>
-      <ForecastTile coords={coords} />
+      <ForecastTile
+        coords={{ lat: weatherData.coord.lat, lon: weatherData.coord.lon }}
+        city={city}
+      />
       <div className="p-5 text-center text-white border">
         <p>Visibility</p>
         <p>{weatherData.visibility}m</p>
