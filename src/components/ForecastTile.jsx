@@ -23,7 +23,7 @@ export default function ForecastTile({ coords: { lat, lon }, city }) {
   }, [lat, lon]);
 
   return (
-    <div className="p-5 text-center text-white border">
+    <div className="flex flex-col items-center w-full p-5 text-center text-white border">
       <p>5 Day Forecast for {city}</p>
       <ul className="flex gap-4">
         {forecastData &&
