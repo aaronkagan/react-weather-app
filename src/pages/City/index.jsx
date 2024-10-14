@@ -11,7 +11,7 @@ export default function City({
 
   async function getWeatherData() {
     const { data: coords } = await axios(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${cityId}&limit=5&appid=${openWeatherApiKey}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cityId}&limit=5&appid=${openWeatherApiKey}`
     );
 
     const { lat, lon } = coords[0];

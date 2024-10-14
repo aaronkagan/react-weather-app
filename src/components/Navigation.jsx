@@ -28,7 +28,7 @@ export default function Navigation() {
         setIsLoading(true);
 
         const { data } = await axios(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${openWeatherApiKey}`
+          `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${openWeatherApiKey}`
         );
         if (data.length === 0) throw error;
         const updatedCities = [...cities, value];
