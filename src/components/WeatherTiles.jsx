@@ -2,25 +2,25 @@ import { useEffect, useState } from 'react';
 import ForecastTile from './ForecastTile';
 import capitalize from '../utils/capitalize';
 
-import { createClient } from 'pexels';
+// import { createClient } from 'pexels';
 
-const pexelsApiKey = import.meta.env.VITE_PEXELS_API_KEY;
+// const pexelsApiKey = import.meta.env.VITE_PEXELS_API_KEY;
 
-const client = createClient(pexelsApiKey);
+// const client = createClient(pexelsApiKey);
 
 export default function WeatherTiles({ weatherData, city }) {
-  const [bgImage, setBgImage] = useState();
+  // const [bgImage, setBgImage] = useState();
 
-  const query = weatherData.weather[0].main + ' sky';
+  // const query = weatherData.weather[0].main + ' sky';
 
-  async function getBgImage() {
-    const photos = await client.photos.search({ query, per_page: 1 });
-    setBgImage(photos.photos[0].src.small);
-  }
-  useEffect(() => {
-    setBgImage('');
-    getBgImage();
-  }, [weatherData]);
+  // async function getBgImage() {
+  //   const photos = await client.photos.search({ query, per_page: 1 });
+  //   setBgImage(photos.photos[0].src.small);
+  // }
+  // useEffect(() => {
+  //   setBgImage('');
+  //   getBgImage();
+  // }, [weatherData]);
 
   return (
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
@@ -85,11 +85,11 @@ export default function WeatherTiles({ weatherData, city }) {
 
       <div className="col-right gap-5 pt-5 w-[33%] flex flex-col justify-between">
         <div className="w-full h-full">
-          <img
+          {/* <img
             src={bgImage}
             alt="Weather Conditions"
             className="object-cover w-full h-[275px]"
-          />
+          /> */}
         </div>
 
         <div className="h-[70%]">
