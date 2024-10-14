@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import capitalize from '../utils/capitalize';
 
