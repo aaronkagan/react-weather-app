@@ -6,7 +6,7 @@ import capitalize from '../utils/capitalize';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
-export default function NavButton({ city }) {
+export default function NavButton({ city, handleDelete }) {
   const [weatherData, setWeatherData] = useState();
 
   async function getWeatherData() {
@@ -41,12 +41,18 @@ export default function NavButton({ city }) {
             }
             to={`/city/${city}`}
           >
-            <div className="text-white bg-inherit bg-[#202b3b] w-[90%] h-[100px] mx-auto p-2 flex justify-between rounded">
+            <div className=" text-white bg-inherit bg-[#202b3b] w-[90%] h-[100px] mx-auto p-2 flex justify-between rounded">
               <div className="flex flex-col justify-between gap-3">
                 <div>
                   <p className="font-bold">{city}</p>
-                  {/* <p className="text-xs text-slate-300">5:39PM</p> */}
+                  <p
+                    className="text-[11px] text-slate-300"
+                    onClick={() => handleDelete(city)}
+                  >
+                    Remove
+                  </p>
                 </div>
+
                 <p className="text-xs text-slate-300">
                   {capitalize(weatherData.weather[0].description)}
                 </p>

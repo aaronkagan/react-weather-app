@@ -48,6 +48,11 @@ export default function Navigation() {
     }
   };
 
+  function handleDelete(city) {
+    const updatedCities = cities.filter((element) => element !== city);
+    setCities(updatedCities);
+  }
+
   return (
     <nav className="rounded-2xl w-[300px]  h-full py-5 no-scrollbar overflow-y-scroll  ">
       <div className="flex justify-center mb-5 ">
@@ -65,7 +70,9 @@ export default function Navigation() {
       <ul className="flex flex-col gap-4 ">
         <HomeButton />
         {cities.map((city) => {
-          return <NavButton key={city} city={city} />;
+          return (
+            <NavButton key={city} city={city} handleDelete={handleDelete} />
+          );
         })}
       </ul>
     </nav>
