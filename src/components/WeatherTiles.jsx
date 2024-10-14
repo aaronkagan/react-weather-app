@@ -26,9 +26,7 @@ export default function WeatherTiles({ weatherData, city }) {
   return (
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
       <div className="col-left w-[66%]">
-        <div
-          className={'flex justify-between w-full p-5 text-[#7f8690] h-[50%] '}
-        >
+        <div className={'flex gap-56 w-full p-5 text-[#7f8690] h-[50%] '}>
           <div className="flex flex-col items-start">
             <div>
               <p className="mb-3 text-3xl text-white">
@@ -36,18 +34,20 @@ export default function WeatherTiles({ weatherData, city }) {
               </p>
               <p>{capitalize(weatherData.weather[0].description)}</p>
             </div>
-            <img
-              src={`https://openweathermap.org/img/wn/${
-                weatherData.weather[0].icon[0] +
-                weatherData.weather[0].icon[1] +
-                'd'
-              }@2x.png`}
-            />
-            {console.log(weatherData)}
+
             <p className="mt-0 text-[5rem] text-white">
               {parseInt(weatherData.main.temp)}&deg;
             </p>
           </div>
+
+          <img
+            src={`https://openweathermap.org/img/wn/${
+              weatherData.weather[0].icon[0] +
+              weatherData.weather[0].icon[1] +
+              'd'
+            }@2x.png`}
+            className="object-cover h-[200px] self-start"
+          />
         </div>
 
         <div className="grid w-full grid-cols-2 gap-4 h-[50%]">
