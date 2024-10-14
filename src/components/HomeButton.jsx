@@ -39,7 +39,7 @@ export default function HomeButton() {
           >
             <div
               className={
-                'text-white w-[90%] bg-inherit h-[100px] mx-auto p-2 flex justify-between rounded '
+                'text-white w-[90%] bg-inherit h-[100px] mx-auto p-2 flex justify-between rounded'
               }
             >
               <div className="flex flex-col justify-between gap-3">

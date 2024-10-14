@@ -54,7 +54,7 @@ export default function WeatherTiles({ weatherData, city }) {
           <p>Min Temp</p>
           <p>{parseInt(weatherData.main.temp_min)}&deg;</p>
         </div>
-        <div className="w-40 h-12 flex items-center justify-center gap-5  p-5 bg-[#202b3b]  text-center text-[#7f8690] rounded">
+        <div className="w-40 h-12 flex items-center justify-center gap-5  p-5 bg-card-gradient text-center text-[#7f8690] rounded">
           <p>Country</p>
           <p>{weatherData.sys.country.toUpperCase()}</p>
         </div>
@@ -62,7 +62,7 @@ export default function WeatherTiles({ weatherData, city }) {
 
       <ForecastTile
         coords={{ lat: weatherData.coord.lat, lon: weatherData.coord.lon }}
-        city={city}
+        city={city || weatherData.name}
       />
       <div className="p-5 text-center text-[#7f8690] border">
         <p className="flex items-center justify-center">Visibility</p>

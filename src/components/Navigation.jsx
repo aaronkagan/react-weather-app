@@ -48,11 +48,11 @@ export default function Navigation() {
     }
   };
   return (
-    <nav className="bg-[#0b131e] rounded-s-[20px] w-[300px] h-full py-5 overflow-y-scroll overscroll-y-contain">
+    <nav className="bg-transparent rounded w-[300px] h-full py-5 overflow-y-scroll">
       <div className="flex justify-center mb-5">
         <form className="w-[90%]" onSubmit={handleSubmit}>
           <input
-            className="w-full p-1 outline-none text-slate-500"
+            className="w-full p-2 px-3 text-sm rounded outline-none  bg-[#202b3b] text-white"
             type="search"
             value={value}
             onChange={handleChange}
