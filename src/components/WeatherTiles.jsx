@@ -104,8 +104,12 @@ export default function WeatherTiles({ weatherData, city }) {
       </div>
 
       <div className="col-right gap-5 pt-5 w-[33%] flex flex-col justify-between">
-        <div className="w-full">
-          <img src={bgImage} alt="" className="object-cover w-full" />
+        <div className="w-full h-full">
+          <img
+            src={bgImage}
+            alt="Weather Conditions"
+            className="object-cover w-full h-[275px]"
+          />
         </div>
 
         <div className="h-[70%]">
