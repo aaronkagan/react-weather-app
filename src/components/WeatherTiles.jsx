@@ -27,16 +27,27 @@ export default function WeatherTiles({ weatherData, city }) {
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
       <div className="col-left w-[66%]">
         <div
-          className={
-            'flex flex-col items-center w-full p-5 text-center text-[#7f8690] h-[50%] ' +
-            `bg-[url${bgImage}]`
-          }
+          className={'flex justify-between w-full p-5 text-[#7f8690] h-[50%] '}
         >
-          <p className="text-3xl">
-            {(city && capitalize(city)) || weatherData.name}
-          </p>
-          <p className="text-3xl">{parseInt(weatherData.main.temp)}&deg;</p>
-          <p>{capitalize(weatherData.weather[0].description)}</p>
+          <div className="flex flex-col items-start">
+            <div>
+              <p className="mb-3 text-3xl text-white">
+                {(city && capitalize(city)) || weatherData.name}
+              </p>
+              <p>{capitalize(weatherData.weather[0].description)}</p>
+            </div>
+            <img
+              src={`https://openweathermap.org/img/wn/${
+                weatherData.weather[0].icon[0] +
+                weatherData.weather[0].icon[1] +
+                'd'
+              }@2x.png`}
+            />
+            {console.log(weatherData)}
+            <p className="mt-0 text-[5rem] text-white">
+              {parseInt(weatherData.main.temp)}&deg;
+            </p>
+          </div>
         </div>
 
         <div className="grid w-full grid-cols-2 gap-4 h-[50%]">
@@ -93,10 +104,10 @@ export default function WeatherTiles({ weatherData, city }) {
         </div> */}
       </div>
 
-      <div className="col-right w-[33%]">
-        <div className="h-[50%]"></div>
+      <div className="col-right w-[33%] flex flex-col justify-between">
+        <div className=""></div>
 
-        <div className="h-[50%]">
+        <div className="h-[70%]">
           <ForecastTile
             coords={{ lat: weatherData.coord.lat, lon: weatherData.coord.lon }}
             city={city || weatherData.name}

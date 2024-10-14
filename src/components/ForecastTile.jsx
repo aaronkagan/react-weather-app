@@ -41,9 +41,22 @@ export default function ForecastTile({
             };
             const dayOfWeek = date.toLocaleDateString('en-US', options);
             return (
-              <li key={day.dt} className="flex items-center justify-between">
-                <p className="text-xs font-thin">{dayOfWeek}</p>
-                <p>{capitalize(day.weather[0].description)}</p>
+              <li
+                key={day.dt}
+                className="grid items-center justify-between grid-cols-4"
+              >
+                <p className="text-xs font-thin text-start">{dayOfWeek}</p>
+                <div>
+                  <img
+                    src={`https://openweathermap.org/img/wn/${
+                      day.weather[0].icon[0] + day.weather[0].icon[1] + 'd'
+                    }@2x.png`}
+                  />
+                </div>
+
+                <p className="text-sm">
+                  {capitalize(day.weather[0].description)}
+                </p>
                 <p>{parseInt(day.main.temp)}&deg;</p>
               </li>
             );
