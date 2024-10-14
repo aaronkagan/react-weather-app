@@ -4,11 +4,7 @@ import capitalize from '../utils/capitalize';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
-export default function ForecastTile({
-  coords: { lat, lon },
-  city,
-  getFiveDayTrend,
-}) {
+export default function ForecastTile({ coords: { lat, lon }, city }) {
   const [forecastData, setForecastData] = useState();
 
   async function getForecastData() {
