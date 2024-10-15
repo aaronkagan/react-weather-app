@@ -75,12 +75,12 @@ export default function Navigation() {
         </form>
       </div>
       {error && (
-        <div className="flex items-center justify-center p-2 text-white">
+        <div className=" flex items-center justify-center p-2 text-white bg-[#202b3b] mx-auto max-w-[90%] rounded mb-5 text-red-500">
           {error}
         </div>
       )}
       {hasDuplicate && (
-        <div className="flex items-center justify-center p-2 text-white">
+        <div className="flex items-center justify-center p-2 text-white bg-[#202b3b] mx-auto max-w-[90%] rounded mb-5 text-red-500">
           <p>Can't add the same city twice</p>
         </div>
       )}
