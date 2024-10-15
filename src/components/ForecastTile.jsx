@@ -24,7 +24,7 @@ export default function ForecastTile({ coords: { lat, lon }, city }) {
   }, [lat, lon]);
 
   return (
-    <div className="flex flex-col gap-4 items-center w-full h-full p-5 text-center text-white bg-[#202b3b] rounded-2xl">
+    <div className="flex flex-col gap-4 items-center w-full h-full p-5 text-center text-white bg-[#202b3b] rounded-2xl overflow-y-scroll no-scrollbar">
       <p className="text-text-color">
         5 Day Forecast for {city && capitalize(city)}
       </p>
