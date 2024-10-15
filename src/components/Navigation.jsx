@@ -11,6 +11,7 @@ export default function Navigation() {
   const [cities, setCities] = useState([]);
   const [value, setValue] = useState('');
   const [error, setError] = useState('');
+  const [hasDuplicate, setHasDuplicate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
@@ -20,6 +21,8 @@ export default function Navigation() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setHasDuplicate(false);
 
     if (
       value &&
@@ -45,6 +48,11 @@ export default function Navigation() {
       } finally {
         setIsLoading(false);
       }
+    } else {
+      setHasDuplicate(true);
+      setTimeout(() => {
+        setHasDuplicate(false);
+      }, 5000);
     }
   };
 
@@ -54,7 +62,7 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="rounded-2xl w-[300px]  h-full py-5 no-scrollbar overflow-y-scroll  ">
+    <nav className="rounded-2xl w-[300px] h-full py-5 no-scrollbar overflow-y-scroll  ">
       <div className="flex justify-center mb-5 ">
         <form className="w-[90%]" onSubmit={handleSubmit}>
           <input
@@ -66,7 +74,16 @@ export default function Navigation() {
           />
         </form>
       </div>
-      {/* {error && <div>{error}</div>}  */}
+      {error && (
+        <div className="flex items-center justify-center p-2 text-white">
+          {error}
+        </div>
+      )}
+      {hasDuplicate && (
+        <div className="flex items-center justify-center p-2 text-white">
+          <p>Can't add the same city twice</p>
+        </div>
+      )}
       <ul className="flex flex-col gap-4 ">
         <HomeButton />
         {cities.map((city) => {
