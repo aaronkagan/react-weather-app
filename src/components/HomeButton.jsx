@@ -35,7 +35,7 @@ export default function HomeButton() {
             className={(isActive) =>
               !isActive ? 'bg-[#202b3b]' : 'bg-[#1f62f2]'
             }
-            to={`/`}
+            to={`/home`}
           >
             <div
               className={
