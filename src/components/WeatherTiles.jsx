@@ -1,7 +1,27 @@
 import ForecastTile from './ForecastTile';
 import capitalize from '../utils/capitalize';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const unsplashApiKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
 export default function WeatherTiles({ weatherData, city }) {
+  const [weatherImage, setWeatherImage] = useState();
+
+  async function fetchImage() {
+    setWeatherImage();
+    const { data } = await axios(
+      `https://api.unsplash.com/search/photos?query=${weatherData.weather[0].main}&client_id=${unsplashApiKey}
+`
+    );
+
+    setWeatherImage(data.results[0].urls.full);
+  }
+
+  useEffect(() => {
+    fetchImage();
+  }, [weatherData]);
+
   return (
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
       <div className="col-left w-[66%]">
@@ -65,11 +85,13 @@ export default function WeatherTiles({ weatherData, city }) {
 
       <div className="col-right gap-5 pt-5 w-[33%] flex flex-col justify-between">
         <div className="w-full h-full">
-          {/* <img
-            src={weatherImage}
-            alt="Weather Conditions"
-            className="object-cover w-full h-[275px]"
-          /> */}
+          {weatherImage && (
+            <img
+              src={weatherImage}
+              alt="Weather Conditions"
+              className="object-cover w-full h-[275px]"
+            />
+          )}
         </div>
 
         <div className="h-[70%]">
