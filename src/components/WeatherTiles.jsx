@@ -26,7 +26,7 @@ export default function WeatherTiles({ weatherData, city }) {
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
       <div className="col-left w-[66%]">
         <div className={'flex gap-56 w-full p-5 text-[#7f8690] h-[50%] '}>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start w-full">
             <div>
               <p className="mb-3 text-3xl text-white">
                 {(city && capitalize(city)) || weatherData.name}
