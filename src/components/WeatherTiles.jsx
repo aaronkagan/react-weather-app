@@ -22,6 +22,21 @@ export default function WeatherTiles({ weatherData, city }) {
     fetchImage();
   }, [weatherData]);
 
+  function convertToLocalTime(timezoneOffset) {
+    const utcDate = new Date();
+    const offsetInMilliseconds = timezoneOffset * 1000;
+    const localDate = new Date(utcDate.getTime() + offsetInMilliseconds);
+    const hours = localDate.getUTCHours().toString().padStart(2, '0');
+    const minutes = localDate.getUTCMinutes().toString().padStart(2, '0');
+    if (hours > 12) {
+      return `${hours - 12}:${minutes} PM`;
+    }
+    if (hours < 10) {
+      return `${hours[1]}:${minutes} AM`;
+    }
+    return `${hours}:${minutes} AM`;
+  }
+
   return (
     <div className="bg-[#0b131e] w-[1000px] flex gap-10 justify-between px-5">
       <div className="col-left w-[66%]">
@@ -36,6 +51,9 @@ export default function WeatherTiles({ weatherData, city }) {
 
             <p className="mt-0 text-[5rem] text-white">
               {parseInt(weatherData.main.temp)}&deg;
+            </p>
+            <p className="text-3xl">
+              {convertToLocalTime(weatherData.timezone)}
             </p>
           </div>
 
