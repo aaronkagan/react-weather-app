@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavButton from './NavButton';
 import HomeButton from './HomeButton';
@@ -37,6 +37,7 @@ export default function Navigation() {
         if (data.length === 0) throw error;
         const updatedCities = [...cities, capitalize(value)];
         setCities(updatedCities);
+        localStorage.setItem('cities', JSON.stringify(updatedCities));
         setValue('');
         history.push(`/city/${value}`);
       } catch (error) {
@@ -56,9 +57,16 @@ export default function Navigation() {
     }
   };
 
+  useEffect(() => {
+    if (localStorage.getItem('cities')) {
+      setCities(JSON.parse(localStorage.getItem('cities')));
+    }
+  }, []);
+
   function handleDelete(city) {
     const updatedCities = cities.filter((element) => element !== city);
     setCities(updatedCities);
+    localStorage.setItem('cities', JSON.stringify(updatedCities));
   }
 
   return (
