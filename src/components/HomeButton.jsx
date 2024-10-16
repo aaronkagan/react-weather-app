@@ -8,11 +8,10 @@ export default function HomeButton() {
 
   async function getWeatherData(lat, lon) {
     const data = await getWeather({ lat, lon });
-
     setWeatherData(data);
   }
 
-  useEffect(() => {
+  function getLocalCoords() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -22,6 +21,10 @@ export default function HomeButton() {
         (error) => console.log(error)
       );
     }
+  }
+
+  useEffect(() => {
+    getLocalCoords();
   }, []);
 
   return (
