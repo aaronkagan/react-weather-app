@@ -1,17 +1,13 @@
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import capitalize from '../utils/capitalize';
-
-const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
+import getWeather from '../utils/getWeather';
 
 export default function HomeButton() {
   const [weatherData, setWeatherData] = useState();
 
   async function getWeatherData(lat, lon) {
-    const { data } = await axios(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
-    );
+    const data = await getWeather({ lat, lon });
 
     setWeatherData(data);
   }
