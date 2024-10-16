@@ -9,9 +9,7 @@ export default function WeatherTiles({ weatherData, city }) {
 
   async function fetchImage() {
     setWeatherImage();
-
     const image = await getUnsplashImage(weatherData);
-
     setWeatherImage(image);
   }
 

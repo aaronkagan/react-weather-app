@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavButton from './NavButton';
 import HomeButton from './HomeButton';
 import capitalize from '../utils/capitalize';
-
-const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
+import getCoords from '../utils/getCoords';
 
 export default function Navigation() {
   const [cities, setCities] = useState([]);
@@ -32,10 +30,10 @@ export default function Navigation() {
       try {
         setIsLoading(true);
 
-        const { data } = await axios(
-          `https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${openWeatherApiKey}`
-        );
-        if (data.length === 0) throw error;
+        // Checking if city exists
+        const coords = await getCoords(value);
+        if (coords === undefined) throw error;
+
         const updatedCities = [...cities, capitalize(value)];
         setCities(updatedCities);
         localStorage.setItem('cities', JSON.stringify(updatedCities));
