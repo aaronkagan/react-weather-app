@@ -10,7 +10,7 @@ export default function Home() {
     setWeatherData(data);
   }
 
-  useEffect(() => {
+  function getLocalCoords() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -20,6 +20,10 @@ export default function Home() {
         (error) => console.log(error)
       );
     }
+  }
+
+  useEffect(() => {
+    getLocalCoords();
   }, []);
 
   return (
