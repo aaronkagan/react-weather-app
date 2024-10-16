@@ -8,8 +8,6 @@ export default async function getForecast({ lat, lon }) {
       `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
     );
 
-    console.log(data);
-
     return data;
   } catch (error) {
     console.log(error);
