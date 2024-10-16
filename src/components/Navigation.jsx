@@ -23,6 +23,7 @@ export default function Navigation() {
     event.preventDefault();
 
     setHasDuplicate(false);
+    setError(false);
 
     if (
       value &&
@@ -43,6 +44,7 @@ export default function Navigation() {
       } catch (error) {
         console.error(error.message);
         setError("City doesn't exist");
+        setValue('');
         setTimeout(() => {
           setError('');
         }, 5000);
@@ -51,6 +53,7 @@ export default function Navigation() {
       }
     } else {
       setHasDuplicate(true);
+      setValue('');
       setTimeout(() => {
         setHasDuplicate(false);
       }, 5000);
