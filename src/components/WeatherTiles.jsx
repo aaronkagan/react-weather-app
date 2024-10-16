@@ -1,22 +1,18 @@
+import { useEffect, useState } from 'react';
 import ForecastTile from './ForecastTile';
 import capitalize from '../utils/capitalize';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import getLocalTime from '../utils/getLocalTime';
-
-const unsplashApiKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
+import getUnsplashImage from '../utils/getUnsplashImage';
 
 export default function WeatherTiles({ weatherData, city }) {
   const [weatherImage, setWeatherImage] = useState();
 
   async function fetchImage() {
     setWeatherImage();
-    const { data } = await axios(
-      `https://api.unsplash.com/search/photos?query=${weatherData.weather[0].main}&client_id=${unsplashApiKey}
-`
-    );
 
-    setWeatherImage(data.results[0].urls.full);
+    const image = await getUnsplashImage(weatherData);
+
+    setWeatherImage(image);
   }
 
   useEffect(() => {
