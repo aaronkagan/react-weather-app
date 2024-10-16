@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import WeatherTiles from '../../components/WeatherTiles';
 import getWeather from '../../utils/getWeather';
 
-const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
-
 export default function Home() {
   const [weatherData, setWeatherData] = useState();
 
