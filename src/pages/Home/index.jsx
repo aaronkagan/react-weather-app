@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import WeatherTiles from '../../components/WeatherTiles';
+import getWeather from '../../utils/getWeather';
 
 const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
 
@@ -8,9 +8,7 @@ export default function Home() {
   const [weatherData, setWeatherData] = useState();
 
   async function getWeatherData(lat, lon) {
-    const { data } = await axios(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
-    );
+    const data = await getWeather({ lat, lon });
     setWeatherData(data);
   }
 
