@@ -1,16 +1,12 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import capitalize from '../utils/capitalize';
-
-const openWeatherApiKey = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
+import getWeather from '../utils/getWeather';
 
 export default function ForecastTile({ coords: { lat, lon }, city }) {
   const [forecastData, setForecastData] = useState();
 
   async function getForecastData() {
-    const { data } = await axios(
-      `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
-    );
+    const data = await getWeather({ lat, lon });
 
     const dailyForecast = data.list.filter((element) =>
       element.dt_txt.includes('15:00:00')
