@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import capitalize from '../utils/capitalize';
-import getWeather from '../utils/getWeather';
+import getForecast from '../utils/getForecast';
 
 export default function ForecastTile({ coords: { lat, lon }, city }) {
   const [forecastData, setForecastData] = useState();
 
   async function getForecastData() {
-    const data = await getWeather({ lat, lon });
+    const data = await getForecast({ lat, lon });
 
     const dailyForecast = data.list.filter((element) =>
       element.dt_txt.includes('15:00:00')

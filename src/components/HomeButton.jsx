@@ -12,6 +12,7 @@ export default function HomeButton() {
     const { data } = await axios(
       `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`
     );
+
     setWeatherData(data);
   }
 
