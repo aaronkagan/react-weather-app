@@ -6,13 +6,20 @@ import getCoords from '../utils/getCoords';
 
 export default function NavButton({ city, handleDelete }) {
   const [weatherData, setWeatherData] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   async function getWeatherData() {
-    const { lat, lon } = await getCoords(city);
-
-    const data = await getWeather({ lat, lon });
-
-    setWeatherData(data);
+    try {
+      setLoading(true);
+      const { lat, lon } = await getCoords(city);
+      const data = await getWeather({ lat, lon });
+      setWeatherData(data);
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
